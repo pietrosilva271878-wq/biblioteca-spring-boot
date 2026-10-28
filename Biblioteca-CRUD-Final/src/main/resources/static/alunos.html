@@ -1,0 +1,137 @@
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Alunos | BiblioSenai</title>
+
+    <link
+        rel="stylesheet"
+        href="/css/style.css"
+    >
+</head>
+
+<body>
+
+    <main class="container">
+
+        <section class="page-header">
+            <div>
+                <h1>Alunos</h1>
+
+                <p>
+                    Cadastre, edite e consulte os alunos da biblioteca.
+                </p>
+            </div>
+        </section>
+
+        <!-- CADASTRO -->
+
+        <section class="card">
+
+            <h2 id="ft">
+                Novo aluno
+            </h2>
+
+            <form id="form">
+
+                <div class="form-group">
+
+                    <label for="nome">
+                        Nome
+                    </label>
+
+                    <input
+                        id="nome"
+                        type="text"
+                        placeholder="Nome completo"
+                        required
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="email">
+                        E-mail
+                    </label>
+
+                    <input
+                        id="email"
+                        type="email"
+                        placeholder="email@exemplo.com"
+                        required
+                    >
+
+                </div>
+
+                <div class="form-actions">
+
+                    <button
+                        type="submit"
+                        class="btn-primary"
+                    >
+                        Salvar aluno
+                    </button>
+
+                    <button
+                        id="cancelar"
+                        type="button"
+                        class="btn-secondary"
+                        style="display: none;"
+                    >
+                        Cancelar
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+        <!-- LISTAGEM -->
+
+        <section class="card">
+
+            <div class="section-header">
+
+                <div>
+                    <h2>
+                        Alunos cadastrados
+                    </h2>
+
+                    <p class="muted">
+                        Gerencie os alunos registrados.
+                    </p>
+                </div>
+
+                <input
+                    id="filtro"
+                    class="filter-input"
+                    type="search"
+                    placeholder="Buscar por nome ou e-mail..."
+                >
+
+            </div>
+
+            <div id="lista">
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="/js/common.js"></script>
+    <script src="/js/alunos.js"></script>
+
+</body>
+
+</html>

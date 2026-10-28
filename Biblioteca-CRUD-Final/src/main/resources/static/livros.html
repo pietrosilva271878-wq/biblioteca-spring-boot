@@ -1,0 +1,169 @@
+<!doctype html>
+
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="utf-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width"
+    >
+
+    <title>
+        Livros
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<main class="wrap">
+
+
+    <h1>
+        Gerenciar livros
+    </h1>
+
+
+    <!-- CADASTRO -->
+
+    <section class="panel">
+
+
+        <h2 id="ft">
+            Cadastrar livro
+        </h2>
+
+
+        <form
+            id="form"
+            class="form-grid"
+        >
+
+
+            <input
+                id="titulo"
+                placeholder="Título"
+                required
+            >
+
+
+            <input
+                id="autor"
+                placeholder="Autor"
+                required
+            >
+
+
+            <input
+                id="ano"
+                type="number"
+                placeholder="Ano"
+            >
+
+
+            <input
+                id="categoria"
+                placeholder="Categoria"
+            >
+
+
+            <!-- CAPA -->
+
+            <div class="full">
+
+                <label for="arquivoCapa">
+
+                    <b>
+                        Capa do livro
+                    </b>
+
+                </label>
+
+
+                <br><br>
+
+
+                <input
+                    id="arquivoCapa"
+                    type="file"
+                    accept="image/png,image/jpeg,image/webp"
+                >
+
+
+                <div
+                    id="previewCapa"
+                    style="margin-top:15px"
+                ></div>
+
+            </div>
+
+
+            <!-- DESCRIÇÃO -->
+
+            <textarea
+                class="full"
+                id="descricao"
+                placeholder="Descrição"
+            ></textarea>
+
+
+            <button type="submit">
+                Salvar
+            </button>
+
+
+            <button
+                type="button"
+                id="cancelar"
+                style="display:none"
+            >
+                Cancelar edição
+            </button>
+
+
+        </form>
+
+    </section>
+
+
+    <!-- LISTA -->
+
+    <section class="panel">
+
+
+        <input
+            id="filtro"
+            placeholder="Buscar livro..."
+        >
+
+
+        <div
+            id="lista"
+            class="admin-list"
+        ></div>
+
+
+    </section>
+
+
+</main>
+
+
+<script src="js/common.js"></script>
+
+<script src="js/livros.js"></script>
+
+
+</body>
+
+</html>

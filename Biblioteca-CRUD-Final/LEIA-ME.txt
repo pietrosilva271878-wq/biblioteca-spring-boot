@@ -1,0 +1,12 @@
+BIBLIOTECA CRUD FINAL
+
+1) Configure src/main/resources/application.properties com seu MySQL.
+2) Crie o banco indicado na URL se ainda não existir.
+3) Execute: .\mvnw spring-boot:run
+4) Abra: http://localhost:8080/
+
+Catálogo: /catalogo.html
+Admin de livros: /livros.html
+Página individual: /livro.html?id=1
+
+O arquivo 100-livros-exemplo.sql é opcional e cria 100 registros de exemplo. Você pode editar título, autor, categoria, descrição e URL da capa pelo próprio sistema.

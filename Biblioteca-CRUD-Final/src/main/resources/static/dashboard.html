@@ -1,0 +1,157 @@
+document.addEventListener("DOMContentLoaded", carregarDashboard);
+
+async function carregarDashboard() {
+    try {
+        // BUSCA OS DADOS DO BACKEND
+        const [livros, alunos, emprestimos] = await Promise.all([
+            api("/livros"),
+            api("/alunos"),
+            api("/emprestimos")
+        ]);
+
+        // ========================================
+        // TOTAL DE LIVROS
+        // ========================================
+
+        document.getElementById("nLivros").textContent =
+            livros.length;
+
+
+        // ========================================
+        // TOTAL DE ALUNOS
+        // ========================================
+
+        document.getElementById("nAlunos").textContent =
+            alunos.length;
+
+
+        // ========================================
+        // LIVROS EMPRESTADOS
+        // ========================================
+
+        const emprestados = emprestimos.filter(
+            emprestimo => !emprestimo.dataDevolucao
+        );
+
+        document.getElementById("nEmp").textContent =
+            emprestados.length;
+
+
+        // ========================================
+        // EMPRÉSTIMOS ATRASADOS
+        // ========================================
+
+        const hoje = new Date();
+
+        hoje.setHours(0, 0, 0, 0);
+
+        const atrasados = emprestimos.filter(emprestimo => {
+
+            // Se já devolveu, não está atrasado
+            if (emprestimo.dataDevolucao) {
+                return false;
+            }
+
+            // Se não tem previsão, não consideramos atrasado
+            if (!emprestimo.dataPrevistaDevolucao) {
+                return false;
+            }
+
+            const dataPrevista =
+                new Date(
+                    emprestimo.dataPrevistaDevolucao + "T00:00:00"
+                );
+
+            return dataPrevista < hoje;
+        });
+
+        document.getElementById("nAtr").textContent =
+            atrasados.length;
+
+
+        // ========================================
+        // LIVROS RECENTES
+        // ========================================
+
+        carregarLivrosRecentes(livros);
+
+    } catch (erro) {
+
+        console.error(
+            "Erro ao carregar dashboard:",
+            erro
+        );
+    }
+}
+
+
+// ========================================
+// MOSTRAR LIVROS RECENTES
+// ========================================
+
+function carregarLivrosRecentes(livros) {
+
+    const grid = document.getElementById("grid");
+
+    if (!grid) {
+        return;
+    }
+
+    grid.innerHTML = "";
+
+    // PEGA OS 6 ÚLTIMOS LIVROS
+    const recentes = [...livros]
+        .sort((a, b) => b.id - a.id)
+        .slice(0, 6);
+
+    recentes.forEach(livro => {
+
+        const card = document.createElement("article");
+
+        card.className = "book-card";
+
+        // CAPA
+        let imagem;
+
+        if (livro.nomeArquivoCapa) {
+
+            imagem =
+                "/capas/" +
+                encodeURIComponent(
+                    livro.nomeArquivoCapa
+                );
+
+        } else {
+
+            imagem =
+                "https://placehold.co/300x450?text=" +
+                encodeURIComponent(
+                    livro.titulo
+                );
+        }
+
+        card.innerHTML = `
+            <a href="/livro.html?id=${livro.id}">
+                <img
+                    src="${imagem}"
+                    alt="${livro.titulo}"
+                    class="book-cover"
+                >
+
+                <div class="book-info">
+                    <h3>${livro.titulo}</h3>
+
+                    <p>
+                        ${livro.autor}
+                    </p>
+
+                    <span>
+                        ${livro.categoria || "Sem categoria"}
+                    </span>
+                </div>
+            </a>
+        `;
+
+        grid.appendChild(card);
+    });
+}

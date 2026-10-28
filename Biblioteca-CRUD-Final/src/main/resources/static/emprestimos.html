@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Biblioteca | Empréstimos</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <div class="layout">
+        <aside class="sidebar">
+            <div class="brand">Biblioteca<span>+</span><small>Sistema de gerenciamento</small></div>
+            <nav class="nav"><a href="/">🏠 Início</a><a href="/alunos.html">👤 Alunos</a><a href="/livros.html">📚
+                    Livros</a><a class="active" href="/emprestimos.html">🔄 Empréstimos</a></nav>
+        </aside>
+        <main class="main">
+            <div class="page-head">
+                <div>
+                    <h1>Empréstimos</h1>
+                    <div class="muted">Registre empréstimos, devoluções e acompanhe atrasos.</div>
+                </div>
+            </div>
+            <section class="panel">
+                <h2>Novo empréstimo</h2>
+                <form class="form" id="form">
+                    <div class="field"><label>Aluno</label><select id="aluno" required></select></div>
+                    <div class="field"><label>Livro</label><select id="livro" required></select></div><button
+                        class="btn">Emprestar</button>
+                </form>
+                <div id="msg"></div>
+            </section>
+            <section class="panel">
+                <div class="toolbar">
+                    <h2>Histórico</h2><select class="search" id="filtro" style="max-width:220px">
+                        <option value="todos">Todos</option>
+                        <option value="ativos">Ativos</option>
+                        <option value="atrasados">Atrasados</option>
+                        <option value="devolvidos">Devolvidos</option>
+                    </select>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Aluno</th>
+                                <th>Livro</th>
+                                <th>Empréstimo</th>
+                                <th>Prevista</th>
+                                <th>Devolução</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody"></tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="/js/common.js"></script>
+    <script src="/js/emprestimos.js"></script>
+</body>
+
+</html>
